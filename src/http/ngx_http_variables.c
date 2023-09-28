@@ -381,6 +381,18 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
 
     { ngx_string("tcpinfo_rcv_space"), NULL, ngx_http_variable_tcpinfo,
       3, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_rcv_wscale"), NULL, ngx_http_variable_tcpinfo,
+      4, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_snd_wscale"), NULL, ngx_http_variable_tcpinfo,
+      5, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_snd_mss"), NULL, ngx_http_variable_tcpinfo,
+      6, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_rcv_mss"), NULL, ngx_http_variable_tcpinfo,
+      7, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 #endif
 
     { ngx_string("http_"), NULL, ngx_http_variable_unknown_header_in,
@@ -1160,7 +1172,22 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
     case 3:
         value = ti.tcpi_rcv_space;
         break;
+        
+    case 4:
+        value = ti.tcpi_rcv_wscale;
+        break;
 
+    case 5:
+        value = ti.tcpi_snd_wscale;
+        break;
+        
+    case 6:
+        value = ti.tcpi_snd_mss;
+        break;
+
+    case 7:
+        value = ti.tcpi_rcv_mss
+        break;
     /* suppress warning */
     default:
         value = 0;
