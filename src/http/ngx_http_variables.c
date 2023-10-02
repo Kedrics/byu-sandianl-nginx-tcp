@@ -393,6 +393,97 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
 
     { ngx_string("tcpinfo_rcv_mss"), NULL, ngx_http_variable_tcpinfo,
       7, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+      
+    { ngx_string("tcpinfo_state"), NULL, ngx_http_variable_tcpinfo,
+      8, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_ca_state"), NULL, ngx_http_variable_tcpinfo,
+      9, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_retransmits"), NULL, ngx_http_variable_tcpinfo,
+      10, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_probes"), NULL, ngx_http_variable_tcpinfo,
+      11, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_backoff"), NULL, ngx_http_variable_tcpinfo,
+      12, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_options"), NULL, ngx_http_variable_tcpinfo,
+      13, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_rto"), NULL, ngx_http_variable_tcpinfo,
+      14, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_ato"), NULL, ngx_http_variable_tcpinfo,
+      15, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_unacked"), NULL, ngx_http_variable_tcpinfo,
+      16, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_sacked"), NULL, ngx_http_variable_tcpinfo,
+      17, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_lost"), NULL, ngx_http_variable_tcpinfo,
+      18, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_retrans"), NULL, ngx_http_variable_tcpinfo,
+      19, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_fackets"), NULL, ngx_http_variable_tcpinfo,
+      20, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_last_data_sent"), NULL, ngx_http_variable_tcpinfo,
+      21, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_last_ack_sent"), NULL, ngx_http_variable_tcpinfo,
+      22, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_last_data_recv"), NULL, ngx_http_variable_tcpinfo,
+      23, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_last_ack_recv"), NULL, ngx_http_variable_tcpinfo,
+      24, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_pmtu"), NULL, ngx_http_variable_tcpinfo,
+      25, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_rcv_ssthresh"), NULL, ngx_http_variable_tcpinfo,
+      26, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_snd_ssthresh"), NULL, ngx_http_variable_tcpinfo,
+      27, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_advmss"), NULL, ngx_http_variable_tcpinfo,
+      28, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_reordering"), NULL, ngx_http_variable_tcpinfo,
+      29, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_snd_wnd"), NULL, ngx_http_variable_tcpinfo,
+      30, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_snd_nxt"), NULL, ngx_http_variable_tcpinfo,
+      31, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_rcv_nxt"), NULL, ngx_http_variable_tcpinfo,
+      32, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_toe_tid"), NULL, ngx_http_variable_tcpinfo,
+      33, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_snd_rexmitpack"), NULL, ngx_http_variable_tcpinfo,
+      34, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_rcv_ooopack"), NULL, ngx_http_variable_tcpinfo,
+      35, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
+    { ngx_string("tcpinfo_snd_zerowin"), NULL, ngx_http_variable_tcpinfo,
+      36, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+      
+    { ngx_string("tcpinfo_rcv_rtt"), NULL, ngx_http_variable_tcpinfo,
+      37, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+
 #endif
 
     { ngx_string("http_"), NULL, ngx_http_variable_unknown_header_in,
@@ -1186,7 +1277,97 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
         break;
 
     case 7:
-        value = ti.tcpi_rcv_mss
+        value = ti.tcpi_rcv_mss;
+        break;
+    case 8:
+        value = ti.tcpi_state;
+        break;
+    case 9:
+        value = ti.__tcpi_ca_state;
+        break;
+    case 10:
+        value = ti.__tcpi_retransmits;
+        break;
+    case 11:
+        value = ti.__tcpi_probes;
+        break;
+    case 12:
+        value = ti.__tcpi_backoff;
+        break;
+    case 13:
+        value = ti.tcpi_options;
+        break;
+    case 14:
+        value = ti.tcpi_rto;
+        break;
+    case 15:
+        value = ti.__tcpi_ato;
+        break;
+    case 16:
+        value = ti.__tcpi_unacked;
+        break;
+    case 17:
+        value = ti.__tcpi_sacked;
+        break;
+    case 18:
+        value = ti.__tcpi_lost;
+        break;
+    case 19:
+        value = ti.__tcpi_retrans;
+        break;
+    case 20:
+        value = ti.__tcpi_fackets;
+        break;
+    case 21:
+        value = ti.__tcpi_last_data_sent;
+        break;
+    case 22:
+        value = ti.__tcpi_last_ack_sent;
+        break;
+    case 23:
+        value = ti.tcpi_last_data_recv;
+        break;
+    case 24:
+        value = ti.__tcpi_last_ac_recv;
+        break;
+    case 25:
+        value = ti.__tcpi_pmtu;
+        break;
+    case 26:
+        value = ti.__tcpi_rcv_ssthresh;
+        break;
+    case 27:
+        value = ti.tcpi_snd_ssthresh;
+        break;
+    case 28:
+        value = ti.__tcpi_advmss;
+        break;
+    case 29:
+        value = ti.__tcpi_reordering;
+        break;
+    case 30:
+        value = ti.tcpi_snd_wnd;
+        break;
+    case 31:
+        value = ti.tcpi_snd_nxt;
+        break;
+    case 32:
+        value = ti.tcpi_rcv_nxt;
+        break;
+    case 33:
+        value = ti.tcpi_toe_tid;
+        break;
+    case 34:
+        value = ti.tcpi_snd_rexmitpack;
+        break;
+    case 35:
+        value = ti.tcpi_rcv_ooopack;
+        break;
+    case 36:
+        value = ti.tcpi_snd_zerowin;
+        break;
+    case 37:
+        value = ti.__tcpi_rcv_rtt;
         break;
     /* suppress warning */
     default:

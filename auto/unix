@@ -552,6 +552,36 @@ ngx_feature_test="socklen_t optlen = sizeof(struct tcp_info);
                   ti.tcpi_snd_wscale = 0;
                   ti.tcpi_snd_mss = 0;
                   ti.tcpi_rcv_mss = 0;
+                  ti.tcpi_state = 0;
+                  ti.__tcpi_ca_state = 0;
+                  ti.__tcpi_retransmits = 0;
+                  ti.__tcpi_probes = 0;
+                  ti.__tcpi_backoff = 0;
+                  ti.tcpi_options = 0;
+                  ti.tcpi_rto = 0;
+                  ti.__tcpi_ato = 0;
+                  ti.__tcpi_unacked = 0;
+                  ti.__tcpi_sacked = 0;
+                  ti.__tcpi_lost = 0;
+                  ti.__tcpi_retrans = 0;
+                  ti.__tcpi_fackets = 0;
+                  ti.__tcpi_last_data_sent = 0;
+                  ti.__tcpi_last_ack_sent = 0;
+                  ti.tcpi_last_data_recv = 0;
+                  ti.__tcpi_last_ac_recv = 0;
+                  ti.__tcpi_pmtu = 0;
+                  ti.__tcpi_rcv_ssthresh = 0;
+                  ti.tcpi_snd_ssthresh = 0;
+                  ti.__tcpi_advmss = 0;
+                  ti.__tcpi_reordering = 0;
+                  ti.tcpi_snd_wnd = 0;
+                  ti.tcpi_snd_nxt = 0;
+                  ti.tcpi_rcv_nxt = 0;
+                  ti.tcpi_toe_tid = 0;
+                  ti.tcpi_snd_rexmitpack = 0;
+                  ti.tcpi_rcv_ooopack = 0;
+                  ti.tcpi_snd_zerowin = 0;
+                  ti.__tcpi_rcv_rtt = 0;
                   getsockopt(0, IPPROTO_TCP, TCP_INFO, &ti, &optlen)"
 . auto/feature
 
