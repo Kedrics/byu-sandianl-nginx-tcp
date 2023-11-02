@@ -382,7 +382,7 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
     { ngx_string("tcpinfo_rcv_space"), NULL, ngx_http_variable_tcpinfo,
       3, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 
-    { ngx_string("tcpinfo_options"), NULL, ngx_http_variable_tcpinfo,
+    { ngx_string("tcpinfo_ato"), NULL, ngx_http_variable_tcpinfo,
       4, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 #endif
 
@@ -1164,7 +1164,7 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
         value = ti.tcpi_rcv_space;
         break;
     case 4: 
-        value = ti.tcpi_options;
+        value = ti.tcpi_ato;
         break;
     /* suppress warning */
     default:
