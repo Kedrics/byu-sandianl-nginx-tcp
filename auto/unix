@@ -556,7 +556,6 @@ ngx_feature_test="socklen_t optlen = sizeof(struct tcp_info);
                   ti.tcpi_backoff = 0;
                   ti.tcpi_snd_wscale = 0;
                   ti.tcpi_rcv_wscale = 0;
-                  ti.tcpi_fastopen_client_fail = 0;
                   ti.tcpi_rto = 0;
                   ti.tcpi_ato = 0;
                   ti.tcpi_snd_mss = 0;
