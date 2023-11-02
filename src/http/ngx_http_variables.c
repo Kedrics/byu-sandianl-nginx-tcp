@@ -404,6 +404,11 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
     { ngx_string("tcpinfo_ato"), NULL, ngx_http_variable_tcpinfo,      13, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_snd_mss"), NULL, ngx_http_variable_tcpinfo,      14, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_rcv_mss"), NULL, ngx_http_variable_tcpinfo,      15, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_unacked"), NULL, ngx_http_variable_tcpinfo,      16, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_sacked"), NULL, ngx_http_variable_tcpinfo,      17, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_lost"), NULL, ngx_http_variable_tcpinfo,      18, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_retrans"), NULL, ngx_http_variable_tcpinfo,      19, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_fackets"), NULL, ngx_http_variable_tcpinfo,      20, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 #endif
 
     { ngx_string("http_"), NULL, ngx_http_variable_unknown_header_in,
@@ -1218,6 +1223,21 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
         break;
     case 15:
         value = ti.tcpi_rcv_mss;        
+        break;
+    case 16:
+        value = ti.tcpi_unacked;        
+        break;
+    case 17:
+        value = ti.tcpi_sacked;        
+        break;
+    case 18:
+        value = ti.tcpi_lost;        
+        break;
+    case 19:
+        value = ti.tcpi_retrans;        
+        break;
+    case 20:
+        value = ti.tcpi_fackets;        
         break;
     /* suppress warning */
     default:
