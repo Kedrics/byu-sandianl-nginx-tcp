@@ -409,6 +409,14 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
     { ngx_string("tcpinfo_lost"), NULL, ngx_http_variable_tcpinfo,      18, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_retrans"), NULL, ngx_http_variable_tcpinfo,      19, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_fackets"), NULL, ngx_http_variable_tcpinfo,      20, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_last_data_sent"), NULL, ngx_http_variable_tcpinfo,      21, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_last_ack_sent"), NULL, ngx_http_variable_tcpinfo,      22, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_last_data_recv"), NULL, ngx_http_variable_tcpinfo,      23, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_last_ack_recv"), NULL, ngx_http_variable_tcpinfo,      24, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_pmtu"), NULL, ngx_http_variable_tcpinfo,      25, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_rcv_ssthresh"), NULL, ngx_http_variable_tcpinfo,      26, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_snd_ssthresh"), NULL, ngx_http_variable_tcpinfo,      27, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_advmss"), NULL, ngx_http_variable_tcpinfo,      28, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 #endif
 
     { ngx_string("http_"), NULL, ngx_http_variable_unknown_header_in,
@@ -1238,6 +1246,30 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
         break;
     case 20:
         value = ti.tcpi_fackets;        
+        break;
+    case 21:
+        value = ti.tcpi_last_data_sent;        
+        break;
+    case 22:
+        value = ti.tcpi_last_ack_sent;        
+        break;
+    case 23:
+        value = ti.tcpi_last_data_recv;        
+        break;
+    case 24:
+        value = ti.tcpi_last_ack_recv;        
+        break;
+    case 25:
+        value = ti.tcpi_pmtu;        
+        break;
+    case 26:
+        value = ti.tcpi_rcv_ssthresh;        
+        break;
+    case 27:
+        value = ti.tcpi_snd_ssthresh;        
+        break;
+    case 28:
+        value = ti.tcpi_advmss;        
         break;
     /* suppress warning */
     default:
