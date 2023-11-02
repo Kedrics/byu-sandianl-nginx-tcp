@@ -418,12 +418,12 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
     { ngx_string("tcpinfo_snd_ssthresh"), NULL, ngx_http_variable_tcpinfo,      27, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_advmss"), NULL, ngx_http_variable_tcpinfo,      28, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_reordering"), NULL, ngx_http_variable_tcpinfo,      29, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_rcv_rtt"), NULL, ngx_http_variable_tcpinfo,      30, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_total_retrans"), NULL, ngx_http_variable_tcpinfo,      31, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_pacing_rate"), NULL, ngx_http_variable_tcpinfo,      32, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_max_pacing_rate"), NULL, ngx_http_variable_tcpinfo,      33, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_bytes_acked"), NULL, ngx_http_variable_tcpinfo,      34, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_bytes_received"), NULL, ngx_http_variable_tcpinfo,      35, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    // { ngx_string("tcpinfo_rcv_rtt"), NULL, ngx_http_variable_tcpinfo,      30, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    // { ngx_string("tcpinfo_total_retrans"), NULL, ngx_http_variable_tcpinfo,      31, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    // { ngx_string("tcpinfo_pacing_rate"), NULL, ngx_http_variable_tcpinfo,      32, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    // { ngx_string("tcpinfo_max_pacing_rate"), NULL, ngx_http_variable_tcpinfo,      33, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    // { ngx_string("tcpinfo_bytes_acked"), NULL, ngx_http_variable_tcpinfo,      34, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    // { ngx_string("tcpinfo_bytes_received"), NULL, ngx_http_variable_tcpinfo,      35, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 #endif
 
     { ngx_string("http_"), NULL, ngx_http_variable_unknown_header_in,
@@ -1281,24 +1281,24 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
     case 29:
         value = ti.tcpi_reordering;        
         break;
-    case 30:
-        value = ti.tcpi_rcv_rtt;        
-        break;
-    case 31:
-        value = ti.tcpi_total_retrans;        
-        break;
-    case 32:
-        value = ti.tcpi_pacing_rate;        
-        break;
-    case 33:
-        value = ti.tcpi_max_pacing_rate;        
-        break;
-    case 34:
-        value = ti.tcpi_bytes_acked;        
-        break;
-    case 35:
-        value = ti.tcpi_bytes_received;        
-        break;
+    // case 30:
+    //     value = ti.tcpi_rcv_rtt;        
+    //     break;
+    // case 31:
+    //     value = ti.tcpi_total_retrans;        
+    //     break;
+    // case 32:
+    //     value = ti.tcpi_pacing_rate;        
+    //     break;
+    // case 33:
+    //     value = ti.tcpi_max_pacing_rate;        
+    //     break;
+    // case 34:
+    //     value = ti.tcpi_bytes_acked;        
+    //     break;
+    // case 35:
+    //     value = ti.tcpi_bytes_received;        
+    //     break;
     /* suppress warning */
     default:
         value = 0;
