@@ -420,7 +420,7 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
     { ngx_string("tcpinfo_reordering"), NULL, ngx_http_variable_tcpinfo,      29, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_rcv_rtt"), NULL, ngx_http_variable_tcpinfo,      30, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_total_retrans"), NULL, ngx_http_variable_tcpinfo,      31, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_delivery_rate"), NULL, ngx_http_variable_tcpinfo,      32, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_busy_time"), NULL, ngx_http_variable_tcpinfo,      32, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 
 #endif
 
