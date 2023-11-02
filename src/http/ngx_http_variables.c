@@ -400,6 +400,7 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
     { ngx_string("tcpinfo_backoff"), NULL, ngx_http_variable_tcpinfo,      9, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_snd_wscale"), NULL, ngx_http_variable_tcpinfo,      10, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_rcv_wscale"), NULL, ngx_http_variable_tcpinfo,      11, NGX_HTTP_VAR_NOCACHEABLE, 0 },
+    { ngx_string("tcpinfo_delivery_rate_app_limited"), NULL, ngx_http_variable_tcpinfo,      12, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 #endif
 
     { ngx_string("http_"), NULL, ngx_http_variable_unknown_header_in,
@@ -1202,6 +1203,9 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
         break;
     case 11:
         value = ti.tcpi_rcv_wscale;        
+        break;
+    case 12:
+        value = ti.tcpi_delivery_rate_app_limited;        
         break;
     /* suppress warning */
     default:
