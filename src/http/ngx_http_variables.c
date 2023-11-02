@@ -421,7 +421,6 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
     { ngx_string("tcpinfo_rcv_rtt"), NULL, ngx_http_variable_tcpinfo,      30, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_total_retrans"), NULL, ngx_http_variable_tcpinfo,      31, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_bytes_acked"), NULL, ngx_http_variable_tcpinfo,      32, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_bytes_received"), NULL, ngx_http_variable_tcpinfo,      33, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 #endif
 
     { ngx_string("http_"), NULL, ngx_http_variable_unknown_header_in,
@@ -1287,9 +1286,6 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
         break;
     case 32:
         value = ti.tcpi_bytes_acked;        
-        break;
-    case 33:
-        value = ti.tcpi_bytes_received;        
         break;
     /* suppress warning */
     default:
