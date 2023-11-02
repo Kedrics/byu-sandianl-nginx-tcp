@@ -420,7 +420,6 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
     { ngx_string("tcpinfo_reordering"), NULL, ngx_http_variable_tcpinfo,      29, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_rcv_rtt"), NULL, ngx_http_variable_tcpinfo,      30, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_total_retrans"), NULL, ngx_http_variable_tcpinfo,      31, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_notsent_bytes"), NULL, ngx_http_variable_tcpinfo,      32, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 
 #endif
 
@@ -1285,9 +1284,7 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
     case 31:
         value = ti.tcpi_total_retrans;        
         break;
-    case 32:
-        value = ti.tcpi_notsent_bytes;        
-        break;
+
     /* suppress warning */
     default:
         value = 0;
