@@ -575,7 +575,6 @@ ngx_feature_test="socklen_t optlen = sizeof(struct tcp_info);
                   ti.tcpi_advmss = 0;
                   ti.tcpi_reordering = 0;
                   ti.tcpi_rcv_rtt = 0;
-                  ti.tcpi_total_retrans = 0;
                   ti.tcpi_rcv_ooopack = 0;
                   
                   getsockopt(0, IPPROTO_TCP, TCP_INFO, &ti, &optlen)"
