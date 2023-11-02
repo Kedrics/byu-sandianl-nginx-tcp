@@ -400,7 +400,6 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
     { ngx_string("tcpinfo_backoff"), NULL, ngx_http_variable_tcpinfo,      9, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_snd_wscale"), NULL, ngx_http_variable_tcpinfo,      10, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_rcv_wscale"), NULL, ngx_http_variable_tcpinfo,      11, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_delivery_rate_app_limited"), NULL, ngx_http_variable_tcpinfo,      12, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_fastopen_client_fail"), NULL, ngx_http_variable_tcpinfo,      12, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 
 #endif
