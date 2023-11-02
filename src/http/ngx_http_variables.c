@@ -1286,7 +1286,7 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
         value = ti.tcpi_total_retrans;        
         break;
     case 32:
-        value = ti.tcpi_busy_time;        
+        value = ti.tcpi_rwnd_limited;        
         break;
     /* suppress warning */
     default:
