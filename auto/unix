@@ -552,6 +552,16 @@ ngx_feature_test="socklen_t optlen = sizeof(struct tcp_info);
 . auto/feature
 
 
+ngx_feature="tcpi_options"
+ngx_feature_name="NGX_HAVE_TCP_OPTIONS"
+ngx_feature_run=no
+ngx_feature_incs="#include <netinet/tcp.h>"
+ngx_feature_path=
+ngx_feature_libs=
+ngx_feature_test="struct tcp_info ti;
+                  ti.tcpi_options"
+. auto/feature
+
 ngx_feature="accept4()"
 ngx_feature_name="NGX_HAVE_ACCEPT4"
 ngx_feature_run=no
