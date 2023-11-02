@@ -548,19 +548,10 @@ ngx_feature_test="socklen_t optlen = sizeof(struct tcp_info);
                   ti.tcpi_rttvar = 0;
                   ti.tcpi_snd_cwnd = 0;
                   ti.tcpi_rcv_space = 0;
+                  ti.tcpi_options = 0;
                   getsockopt(0, IPPROTO_TCP, TCP_INFO, &ti, &optlen)"
 . auto/feature
 
-
-ngx_feature="tcpi_options"
-ngx_feature_name="NGX_HAVE_TCP_OPTIONS"
-ngx_feature_run=no
-ngx_feature_incs="#include <netinet/tcp.h>"
-ngx_feature_path=
-ngx_feature_libs=
-ngx_feature_test="struct tcp_info ti;
-                  ti.tcpi_options"
-. auto/feature
 
 ngx_feature="accept4()"
 ngx_feature_name="NGX_HAVE_ACCEPT4"

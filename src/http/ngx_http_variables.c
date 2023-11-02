@@ -381,11 +381,11 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
 
     { ngx_string("tcpinfo_rcv_space"), NULL, ngx_http_variable_tcpinfo,
       3, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-#endif
-#if (NGX_HAVE_TCP_OPTIONS)
+
     { ngx_string("tcpinfo_options"), NULL, ngx_http_variable_tcpinfo,
       4, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 #endif
+
     { ngx_string("http_"), NULL, ngx_http_variable_unknown_header_in,
       0, NGX_HTTP_VAR_PREFIX, 0 },
 
@@ -1163,11 +1163,9 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
     case 3:
         value = ti.tcpi_rcv_space;
         break;
-#if (NGX_HAVE_TCP_INFO_TOTAL_RETRANS)
     case 4: 
         value = ti.tcpi_options;
         break;
-#endif
     /* suppress warning */
     default:
         value = 0;
