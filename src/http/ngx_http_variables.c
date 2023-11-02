@@ -424,26 +424,6 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
     { ngx_string("tcpinfo_max_pacing_rate"), NULL, ngx_http_variable_tcpinfo,      33, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_bytes_acked"), NULL, ngx_http_variable_tcpinfo,      34, NGX_HTTP_VAR_NOCACHEABLE, 0 },
     { ngx_string("tcpinfo_bytes_received"), NULL, ngx_http_variable_tcpinfo,      35, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_segs_out"), NULL, ngx_http_variable_tcpinfo,      36, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_segs_in"), NULL, ngx_http_variable_tcpinfo,      37, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_notsent_bytes"), NULL, ngx_http_variable_tcpinfo,      38, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_min_rtt"), NULL, ngx_http_variable_tcpinfo,      39, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_data_segs_in"), NULL, ngx_http_variable_tcpinfo,      40, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_data_segs_out"), NULL, ngx_http_variable_tcpinfo,      41, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_delivery_rate"), NULL, ngx_http_variable_tcpinfo,      42, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_busy_time"), NULL, ngx_http_variable_tcpinfo,      43, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_rwnd_limited"), NULL, ngx_http_variable_tcpinfo,      44, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_sndbuf_limited"), NULL, ngx_http_variable_tcpinfo,      45, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_delivered"), NULL, ngx_http_variable_tcpinfo,      46, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_delivered_ce"), NULL, ngx_http_variable_tcpinfo,      47, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_bytes_sent"), NULL, ngx_http_variable_tcpinfo,      48, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_bytes_retrans"), NULL, ngx_http_variable_tcpinfo,      49, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_dsack_dups"), NULL, ngx_http_variable_tcpinfo,      50, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_reord_seen"), NULL, ngx_http_variable_tcpinfo,      51, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_rcv_ooopack"), NULL, ngx_http_variable_tcpinfo,      52, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_snd_wnd"), NULL, ngx_http_variable_tcpinfo,      53, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_rcv_wnd"), NULL, ngx_http_variable_tcpinfo,      54, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-    { ngx_string("tcpinfo_rehash"), NULL, ngx_http_variable_tcpinfo,      55, NGX_HTTP_VAR_NOCACHEABLE, 0 },
 #endif
 
     { ngx_string("http_"), NULL, ngx_http_variable_unknown_header_in,
@@ -1319,67 +1299,6 @@ ngx_http_variable_tcpinfo(ngx_http_request_t *r, ngx_http_variable_value_t *v,
     case 35:
         value = ti.tcpi_bytes_received;        
         break;
-    case 36:
-        value = ti.tcpi_segs_out;        
-        break;
-    case 37:
-        value = ti.tcpi_segs_in;        
-        break;
-    case 38:
-        value = ti.tcpi_notsent_bytes;        
-        break;
-    case 39:
-        value = ti.tcpi_min_rtt;        
-        break;
-    case 40:
-        value = ti.tcpi_data_segs_in;        
-        break;
-    case 41:
-        value = ti.tcpi_data_segs_out;        
-        break;
-    case 42:
-        value = ti.tcpi_delivery_rate;        
-        break;
-    case 43:
-        value = ti.tcpi_busy_time;        
-        break;
-    case 44:
-        value = ti.tcpi_rwnd_limited;        
-        break;
-    case 45:
-        value = ti.tcpi_sndbuf_limited;        
-        break;
-    case 46:
-        value = ti.tcpi_delivered;        
-        break;
-    case 47:
-        value = ti.tcpi_delivered_ce;        
-        break;
-    case 48:
-        value = ti.tcpi_bytes_sent;        
-        break;
-    case 49:
-        value = ti.tcpi_bytes_retrans;        
-        break;
-    case 50:
-        value = ti.tcpi_dsack_dups;        
-        break;
-    case 51:
-        value = ti.tcpi_reord_seen;        
-        break;
-    case 52:
-        value = ti.tcpi_rcv_ooopack;        
-        break;
-    case 53:
-        value = ti.tcpi_snd_wnd;        
-        break;
-    case 54:
-        value = ti.tcpi_rcv_wnd;        
-        break;
-    case 55:
-        value = ti.tcpi_rehash;        
-        break;
-
     /* suppress warning */
     default:
         value = 0;
