@@ -24,14 +24,6 @@
 #include <openssl/engine.h>
 #endif
 #include <openssl/evp.h>
-#if (NGX_QUIC)
-#ifdef OPENSSL_IS_BORINGSSL
-#include <openssl/hkdf.h>
-#include <openssl/chacha.h>
-#else
-#include <openssl/kdf.h>
-#endif
-#endif
 #include <openssl/hmac.h>
 #ifndef OPENSSL_NO_OCSP
 #include <openssl/ocsp.h>
@@ -263,6 +255,8 @@ ngx_int_t ngx_ssl_check_host(ngx_connection_t *c, ngx_str_t *name);
 
 ngx_int_t ngx_ssl_get_protocol(ngx_connection_t *c, ngx_pool_t *pool,
     ngx_str_t *s);
+ngx_int_t ngx_ssl_get_handshake_rtt(ngx_connection_t *c, ngx_pool_t *pool,
+    ngx_str_t *s);
 ngx_int_t ngx_ssl_get_cipher_name(ngx_connection_t *c, ngx_pool_t *pool,
     ngx_str_t *s);
 ngx_int_t ngx_ssl_get_ciphers(ngx_connection_t *c, ngx_pool_t *pool,
@@ -310,9 +304,6 @@ ngx_int_t ngx_ssl_get_client_v_remain(ngx_connection_t *c, ngx_pool_t *pool,
 
 
 ngx_int_t ngx_ssl_handshake(ngx_connection_t *c);
-#if (NGX_DEBUG)
-void ngx_ssl_handshake_log(ngx_connection_t *c);
-#endif
 ssize_t ngx_ssl_recv(ngx_connection_t *c, u_char *buf, size_t size);
 ssize_t ngx_ssl_write(ngx_connection_t *c, u_char *data, size_t size);
 ssize_t ngx_ssl_recv_chain(ngx_connection_t *c, ngx_chain_t *cl, off_t limit);

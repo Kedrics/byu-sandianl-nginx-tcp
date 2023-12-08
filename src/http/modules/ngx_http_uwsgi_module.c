@@ -1381,10 +1381,7 @@ ngx_http_uwsgi_process_header(ngx_http_request_t *r)
                 }
 
                 u->headers_in.status_n = status;
-
-                if (status_line->len > 3) {
-                    u->headers_in.status_line = *status_line;
-                }
+                u->headers_in.status_line = *status_line;
 
             } else if (u->headers_in.location) {
                 u->headers_in.status_n = 302;
@@ -1878,9 +1875,8 @@ ngx_http_uwsgi_merge_loc_conf(ngx_conf_t *cf, void *parent, void *child)
                               prev->upstream.ssl_session_reuse, 1);
 
     ngx_conf_merge_bitmask_value(conf->ssl_protocols, prev->ssl_protocols,
-                                 (NGX_CONF_BITMASK_SET
-                                  |NGX_SSL_TLSv1|NGX_SSL_TLSv1_1
-                                  |NGX_SSL_TLSv1_2|NGX_SSL_TLSv1_3));
+                                 (NGX_CONF_BITMASK_SET|NGX_SSL_TLSv1
+                                  |NGX_SSL_TLSv1_1|NGX_SSL_TLSv1_2));
 
     ngx_conf_merge_str_value(conf->ssl_ciphers, prev->ssl_ciphers,
                              "DEFAULT");

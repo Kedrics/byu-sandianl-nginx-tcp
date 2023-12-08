@@ -6,7 +6,7 @@ TEMP =		tmp
 
 CC =		cl
 OBJS =		objs.msvc8
-OPENSSL =	openssl-3.0.10
+OPENSSL =	openssl-1.1.1s
 ZLIB =		zlib-1.2.13
 PCRE =		pcre2-10.39
 
@@ -75,8 +75,6 @@ win32:
 		--with-http_slice_module				\
 		--with-mail						\
 		--with-stream						\
-		--with-stream_realip_module				\
-		--with-stream_ssl_preread_module			\
 		--with-openssl=$(OBJS)/lib/$(OPENSSL)			\
 		--with-openssl-opt="no-asm no-tests -D_WIN32_WINNT=0x0501" \
 		--with-http_ssl_module					\
@@ -105,7 +103,7 @@ zip: export
 	$(MAKE) -f docs/GNUmakefile changes
 	mv $(TEMP)/$(NGINX)/CHANGES* $(TEMP)/$(NGINX)/docs/
 
-	cp -p $(OBJS)/lib/$(OPENSSL)/LICENSE.txt			\
+	cp -p $(OBJS)/lib/$(OPENSSL)/LICENSE				\
 		$(TEMP)/$(NGINX)/docs/OpenSSL.LICENSE
 
 	cp -p $(OBJS)/lib/$(PCRE)/LICENCE				\
