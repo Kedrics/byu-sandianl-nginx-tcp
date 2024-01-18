@@ -1813,6 +1813,7 @@ ngx_ssl_handshake(ngx_connection_t *c)
     ngx_ssl_clear_error(c->log);
 
     n = SSL_do_handshake(c->ssl->connection);
+    c->tls_client_hello = ngx_current_msec;
 
     ngx_log_debug1(NGX_LOG_DEBUG_EVENT, c->log, 0, "SSL_do_handshake: %d", n);
 

@@ -131,6 +131,10 @@ static ngx_int_t ngx_http_variable_connection_requests(ngx_http_request_t *r,
     ngx_http_variable_value_t *v, uintptr_t data);
 static ngx_int_t ngx_http_variable_connection_time(ngx_http_request_t *r,
     ngx_http_variable_value_t *v, uintptr_t data);
+static ngx_int_t ngx_tcp_variable_connection_time(ngx_http_request_t *r,
+    ngx_http_variable_value_t *v, uintptr_t data);
+static ngx_int_t ngx_tls_variable_connection_time(ngx_http_request_t *r,
+    ngx_http_variable_value_t *v, uintptr_t data);
 
 static ngx_int_t ngx_http_variable_nginx_version(ngx_http_request_t *r,
     ngx_http_variable_value_t *v, uintptr_t data);
@@ -368,7 +372,10 @@ static ngx_http_variable_t  ngx_http_core_variables[] = {
 
     { ngx_string("time_local"), NULL, ngx_http_variable_time_local,
       0, NGX_HTTP_VAR_NOCACHEABLE, 0 },
-
+    { ngx_string("tcpinfo_tcp_ack"), NULL, ngx_tcp_variable_connection_time,
+      0, NGX_HTTP_VAR_CHANGEABLE, 0 },
+    { ngx_string("tcpinfo_tls_client_hello"), NULL, ngx_tls_variable_connection_time,
+      0, NGX_HTTP_VAR_CHANGEABLE, 0 },
 #if (NGX_HAVE_TCP_INFO)
     { ngx_string("tcpinfo_rtt"), NULL, ngx_http_variable_tcpinfo,
       0, NGX_HTTP_VAR_NOCACHEABLE, 0 },
@@ -2346,6 +2353,51 @@ ngx_http_variable_connection_time(ngx_http_request_t *r,
     return NGX_OK;
 }
 
+static ngx_int_t
+ngx_tcp_variable_connection_time(ngx_http_request_t *r,
+    ngx_http_variable_value_t *v, uintptr_t data)
+{
+    u_char          *p;
+    ngx_msec_int_t   ms;
+
+    p = ngx_pnalloc(r->pool, NGX_TIME_T_LEN + 4);
+    if (p == NULL) {
+        return NGX_ERROR;
+    }
+
+    ms = r->connection->tcp_ack;
+
+    v->len = ngx_sprintf(p, "%T.%03M", (time_t) ms / 1000, ms % 1000) - p;
+    v->valid = 1;
+    v->no_cacheable = 0;
+    v->not_found = 0;
+    v->data = p;
+
+    return NGX_OK;
+}
+static ngx_int_t
+ngx_tls_variable_connection_time(ngx_http_request_t *r,
+    ngx_http_variable_value_t *v, uintptr_t data)
+{
+    u_char          *p;
+    ngx_msec_int_t   ms;
+
+    p = ngx_pnalloc(r->pool, NGX_TIME_T_LEN + 4);
+    if (p == NULL) {
+        return NGX_ERROR;
+    }
+
+    ms = r->connection->tls_client_hello;
+    ms = ngx_max(ms, 0);
+
+    v->len = ngx_sprintf(p, "%T.%03M", (time_t) ms / 1000, ms % 1000) - p;
+    v->valid = 1;
+    v->no_cacheable = 0;
+    v->not_found = 0;
+    v->data = p;
+
+    return NGX_OK;
+}
 
 static ngx_int_t
 ngx_http_variable_nginx_version(ngx_http_request_t *r,

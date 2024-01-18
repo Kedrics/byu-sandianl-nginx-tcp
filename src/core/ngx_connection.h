@@ -169,6 +169,9 @@ struct ngx_connection_s {
     ngx_atomic_uint_t   number;
 
     ngx_msec_t          start_time;
+    ngx_msec_t          tcp_ack;
+    ngx_msec_t          tls_client_hello;
+
     ngx_uint_t          requests;
 
     unsigned            buffered:8;
